@@ -14,17 +14,20 @@ using namespace std;
 
 class ubigint {
    friend ostream& operator<< (ostream&, const ubigint&);
-   // 4(a) replace the declaration
+
    private:
-      //using unumber = unsigned long;
-      //unumber uvalue {};
+      using unumber = unsigned long;
+      unumber uvalue {};
       using udigit_t = unsigned char;
       using ubigvalue_t = vector<udigit_t>;
       ubigvalue_t ubig_value;
-   public:
+
+      using quo_rem = pair<ubigint, ubigint>;
+      quo_rem udivide (const ubigint&) const;
       void multiply_by_2();
       void divide_by_2();
 
+   public:
       ubigint() = default; // Need default ctor as well.
       ubigint (unsigned long);
       ubigint (const string&);
