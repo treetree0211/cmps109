@@ -125,48 +125,8 @@ ubigint ubigint::operator* (const ubigint& that) const {
    return result;
 }
 
-void ubigint::multiply_by_2() {
-   (*this) = (*this) + (*this);
-}
 
-void ubigint::divide_by_2() {
-   ubigint res;
-   ubigint div = (*this);
-   // https://en.wikipedia.org/wiki/Division_by_two
-   div.ubig_value.push_back('0' + 0);
-   for(auto itor = div.ubig_value.rbegin();
-      itor != div.ubig_value.rend() - 1; ++itor) {
-      if(((*itor - '0') % 2) == 0) {
-         if((*(itor+1) - '0') == 0 || (*(itor+1) - '0') == 1)
-            res.ubig_value.insert(res.ubig_value.begin(), '0' + 0);
-         if((*(itor+1) - '0') == 2 || (*(itor+1) - '0') == 3)
-            res.ubig_value.insert(res.ubig_value.begin(), '0' + 1);
-         if((*(itor+1) - '0') == 4 || (*(itor+1) - '0') == 5)
-            res.ubig_value.insert(res.ubig_value.begin(), '0' +2);
-         if((*(itor+1) - '0') == 6 || (*(itor+1) - '0') == 7)
-            res.ubig_value.insert(res.ubig_value.begin(), '0' + 3);
-         if((*(itor+1) - '0') == 8 || (*(itor+1) - '0') == 9)
-            res.ubig_value.insert(res.ubig_value.begin(), '0' + 4);
-      } else {
-         if((*(itor+1) - '0') == 0 || (*(itor+1) - '0') == 1)
-            res.ubig_value.insert(res.ubig_value.begin(), '0' + 5);
-         if((*(itor+1) - '0') == 2 || (*(itor+1) - '0') == 3)
-            res.ubig_value.insert(res.ubig_value.begin(), '0' + 6);
-         if((*(itor+1) - '0') == 4 || (*(itor+1) - '0') == 5)
-            res.ubig_value.insert(res.ubig_value.begin(), '0' + 7);
-         if((*(itor+1) - '0') == 6 || (*(itor+1) - '0') == 7)
-            res.ubig_value.insert(res.ubig_value.begin(), '0' + 8);
-         if((*(itor+1) - '0') == 8 || (*(itor+1) - '0') == 9)
-            res.ubig_value.insert(res.ubig_value.begin(), '0' + 9);
-      }
-   }
-   while(res.ubig_value.size() > 0 and
-      res.ubig_value.back() == (0 + '0'))
-      res.ubig_value.pop_back();
-   (*this) = res;
-}
-
-
+//
 
 ubigint::quo_rem ubigint::udivide (const ubigint& that) const{
    // Note: divisor is modified so pass by value (copy).
